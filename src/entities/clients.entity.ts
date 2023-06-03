@@ -14,7 +14,7 @@ import {
 export default class Client {
   @PrimaryGeneratedColumn("uuid") id: string;
 
-  @Column({ length: 127 }) full_name: string;
+  @Column({ length: 127 }) name: string;
 
   @Column({ length: 127, unique: true }) email: string;
 
@@ -29,7 +29,7 @@ export default class Client {
 
   @Column() phone: number;
 
-  @Column({ length: 127, nullable: true }) img: string | null;
+  @Column({ length: 127, nullable: true }) imgUrl: string | null;
 
   @CreateDateColumn({ type: "date" }) createdAt: string | Date;
 
