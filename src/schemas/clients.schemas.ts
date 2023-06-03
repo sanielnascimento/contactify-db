@@ -12,12 +12,19 @@ const clientSchema = z.object({
   deletedAt: z.string().nullable(),
 });
 
-export const clientCreateSchema = clientSchema.omit({
+const clientCreateSchema = clientSchema.omit({
   id: true,
   createdAt: true,
   updatedAt: true,
   deletedAt: true,
 });
 
-export const clientUpdateSchema = clientCreateSchema.partial();
-export const userResponseSchema = clientSchema.omit({ password: true });
+const clientUpdateSchema = clientCreateSchema.partial();
+const userResponseSchema = clientSchema.omit({ password: true });
+
+export default {
+  clientSchema,
+  clientCreateSchema,
+  clientUpdateSchema,
+  userResponseSchema,
+};

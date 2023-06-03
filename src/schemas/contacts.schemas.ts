@@ -19,4 +19,11 @@ const contactCreateSchema = contactSchema.omit({
 });
 
 const contactUpdateSchema = contactCreateSchema.partial();
-const userResponseSchema = contactSchema;
+const contactResponseSchema = contactSchema;
+
+export default {
+  contactSchema,
+  contactCreateSchema,
+  contactUpdateSchema,
+  contactResponseSchema,
+};
