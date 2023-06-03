@@ -20,11 +20,11 @@ const clientCreateSchema = clientSchema.omit({
 });
 
 const clientUpdateSchema = clientCreateSchema.partial();
-const userResponseSchema = clientSchema.omit({ password: true });
+const clientResponseSchema = clientSchema.omit({ password: true });
 
 export default {
   clientSchema,
   clientCreateSchema,
   clientUpdateSchema,
-  userResponseSchema,
+  clientResponseSchema,
 };
