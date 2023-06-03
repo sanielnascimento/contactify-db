@@ -29,7 +29,7 @@ export default class Client {
 
   @Column() phone: number;
 
-  @Column({ length: 300 }) img: string;
+  @Column({ length: 127, nullable: true }) img: string | null;
 
   @CreateDateColumn({ type: "date" }) createdAt: string | Date;
 
