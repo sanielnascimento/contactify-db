@@ -13,7 +13,7 @@ import Client from "./clients.entity";
 export default class Contact {
   @PrimaryGeneratedColumn("uuid") id: string;
 
-  @Column({ length: 127 }) full_name: string;
+  @Column({ length: 127 }) name: string;
 
   @Column({ length: 127, unique: true }) email: string;
 

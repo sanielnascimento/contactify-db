@@ -29,7 +29,8 @@ export default class Client {
 
   @Column() phone: number;
 
-  @Column({ length: 127, nullable: true }) imgUrl: string | null;
+  @Column({ type: "varchar", length: 127, nullable: true })
+  imgUrl: string | null;
 
   @CreateDateColumn({ type: "date" }) createdAt: string | Date;
 
