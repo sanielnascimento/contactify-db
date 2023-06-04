@@ -19,7 +19,7 @@ export default class Contact {
 
   @Column() phone: number;
 
-  @Column({ default: "Sem comentários!", length: 300 }) comment: string;
+  @Column({ type: "varchar", default: "Sem comentários!", length: 300 }) comment: string | null;
 
   @CreateDateColumn({ type: "date" }) createdAt: string | Date;
 

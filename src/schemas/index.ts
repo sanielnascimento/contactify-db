@@ -1,4 +1,4 @@
-import clientsSchemas from "./clients.schemas";
-import contactsSchemas from "./contacts.schemas";
+import clients from "./clients.schemas";
+import contacts from "./contacts.schemas";
 
-export default { clientsSchemas, contactsSchemas };
+export default { clients, contacts };

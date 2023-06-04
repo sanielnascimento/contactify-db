@@ -19,11 +19,11 @@ const contactCreateSchema = contactSchema.omit({
 });
 
 const contactUpdateSchema = contactCreateSchema.partial();
-const contactResponseSchema = contactSchema;
+const contactsResponseSchema = z.array(contactSchema);
 
 export default {
   contactSchema,
   contactCreateSchema,
   contactUpdateSchema,
-  contactResponseSchema,
+  contactsResponseSchema,
 };
