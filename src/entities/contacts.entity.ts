@@ -1,33 +1,42 @@
 import {
-  Entity,
   PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
   CreateDateColumn,
-  UpdateDateColumn,
-  DeleteDateColumn,
+  ManyToOne,
+  Entity,
+  Column,
 } from "typeorm";
+
 import Client from "./clients.entity";
 
+export enum contactsCategory {
+  GENERAL = "General",
+  FAMILIAR = "Familiar",
+  FRIEND = "Friend",
+  COWORKER = "Coworker",
+  SUPPLIER = "Supplier",
+  CUSTOMERS = "Customers",
+}
+
 @Entity("contacts")
-export default class Contact {
+export class Contact {
   @PrimaryGeneratedColumn("uuid") id: string;
 
-  @Column({ length: 127 }) name: string;
+  @Column() name: string;
 
-  @Column({ length: 127, unique: true }) email: string;
+  @Column({ unique: true }) email: string;
 
-  @Column() phone: number;
+  @Column({ type: "bigint" }) phone: number;
 
-  @Column({ type: "varchar", default: "Sem comentários!", length: 300 }) comment: string | null;
+  @Column({type: "varchar", default: "Sem comentário"}) comment: string | null | undefined;
+
+  @Column({
+    type: "enum",
+    enum: contactsCategory,
+    default: contactsCategory.GENERAL,
+  })
+  category: contactsCategory;
 
   @CreateDateColumn({ type: "date" }) createdAt: string | Date;
 
-  @UpdateDateColumn({ type: "date" }) updatedAt: string | Date;
-
-  @DeleteDateColumn({ type: "date", nullable: true })
-  deletedAt?: string | Date | null;
-
-  @ManyToOne(() => Client)
-  client: Client;
+  @ManyToOne(() => Client) client: Client | null;
 }

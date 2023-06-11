@@ -1,24 +1,29 @@
 import { z } from "zod";
+import { contactsCategory } from "../entities";
 
 const contactSchema = z.object({
   id: z.string(),
-  name: z.string().min(6).max(45),
+  name: z.string().min(6).max(60),
   email: z.string().email().min(10).max(45),
-  phone: z.number().min(10).max(14),
-  comment: z.string().max(300).nullable(),
+  phone: z.preprocess((x) => Number(x), z.number()),
+  comment: z.string().min(4).max(300).nullish(),
+  category: z.nativeEnum(contactsCategory),
   createdAt: z.string(),
-  updatedAt: z.string(),
-  deletedAt: z.string().nullable(),
 });
 
 const contactCreateSchema = contactSchema.omit({
   id: true,
   createdAt: true,
-  updatedAt: true,
-  deletedAt: true,
+  category: true,
 });
 
-const contactUpdateSchema = contactCreateSchema.partial();
+const contactUpdateSchema = contactSchema
+  .omit({
+    id: true,
+    createdAt: true,
+  })
+  .partial();
+
 const contactsResponseSchema = z.array(contactSchema);
 
 export default {

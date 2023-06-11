@@ -1,26 +1,38 @@
 import { Request, Response } from "express";
-import { iClientUpdateRequest } from "../interfaces";
+import { iClientRequest, iClientUpdateRequest } from "../interfaces";
 import services from "../services";
 
-const create = async ( req: Request, res: Response): Promise<Response> => {
-  return res.status(201).json(await services.clients.create(req.body));
+const create = async (req: Request, res: Response): Promise<Response> => {
+  const body: iClientRequest = req.body;
+
+  const client = await services.clients.create(body);
+
+  return res.status(201).json(client);
 };
 
-const read = async ( _: Request, res: Response): Promise<Response> => {
-  return res.json(await services.clients.retrieve());
+const get = async (_: Request, res: Response): Promise<Response> => {
+  const id: string = res.locals.userId;
+
+  const client = await services.clients.retrieve(id);
+
+  return res.json(client);
 };
 
-const update = async ( req: Request, res: Response ): Promise<Response> => {
-  const id: string = req.params.id;
+const update = async (req: Request, res: Response): Promise<Response> => {
   const body: iClientUpdateRequest = req.body;
+  const id: string = res.locals.userId;
 
-  return res.json(await services.clients.update( id, body ));
+  const client = await services.clients.update(id, body);
+
+  return res.json(client);
 };
 
-const remove = async ( req: Request, res: Response): Promise<Response> => {
-  await services.clients.remove(req.params.id)
+const remove = async (_: Request, res: Response): Promise<Response> => {
+  const id: string = res.locals.userId;
+
+  await services.clients.remove(id);
 
   return res.status(204).send();
 };
 
-export default { create, read, update, remove }
+export default { create, get, update, remove };

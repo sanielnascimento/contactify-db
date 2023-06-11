@@ -1,4 +1,4 @@
 import Client from "./clients.entity";
-import Contact from "./contacts.entity";
+import {contactsCategory, Contact} from "./contacts.entity";
 
-export { Client, Contact };
+export { Client, Contact, contactsCategory };

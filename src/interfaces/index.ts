@@ -1,30 +1,31 @@
+import { iLoginRequest } from "./login.interfaces";
+
 import {
   iClient,
+  iClientRepo,
   iClientRequest,
   iClientResponse,
-  iClientUpdateRequest,
-  iClientRepo,
+  iClientUpdateRequest
 } from "./clients.interfaces";
 
 import {
   iContact,
-  iContactCreateRequest,
-  iContactResponse,
+  iContactRepo,
   iContactsResponse,
   iContactUpdateRequest,
-  iContactRepo
+  iContactCreateRequest
 } from "./contacts.interfaces";
 
 export {
   iClient,
+  iContact,
+  iClientRepo,
+  iContactRepo,
+  iLoginRequest,
   iClientRequest,
   iClientResponse,
-  iClientUpdateRequest,
-  iClientRepo,
-  iContact,
-  iContactCreateRequest,
-  iContactResponse,
   iContactsResponse,
+  iClientUpdateRequest,
+  iContactCreateRequest,
   iContactUpdateRequest,
-  iContactRepo
 };

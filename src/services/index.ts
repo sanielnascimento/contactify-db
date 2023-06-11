@@ -1,4 +1,5 @@
-import clients from "./clients.services";
-import contacts from "./contacts.services";
+import clients from "./clients.service";
+import contacts from "./contacts.service";
+import login from "./login.service";
 
-export default { clients, contacts };
+export default { clients, contacts, login };
