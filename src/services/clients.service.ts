@@ -44,7 +44,7 @@ const update = async (id: string, body: iClientUpdateRequest): Promise<iClientRe
 const remove = async (id: string): Promise<void> => {
   const clientRepo: iClientRepo = AppDataSource.getRepository(Client);
 
-  await clientRepo.softRemove({ id: id });
+  await clientRepo.delete(id);
 };
 
 export default { create, retrieve, remove, update };

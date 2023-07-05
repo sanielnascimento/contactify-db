@@ -9,12 +9,12 @@ import {
 import Client from "./clients.entity";
 
 export enum contactsCategory {
-  GENERAL = "General",
+  GENERAL = "Geral",
   FAMILIAR = "Familiar",
-  FRIEND = "Friend",
-  COWORKER = "Coworker",
-  SUPPLIER = "Supplier",
-  CUSTOMERS = "Customers",
+  FRIEND = "Amigo",
+  COWORKER = "Colega",
+  SUPPLIER = "Fornecedor",
+  CUSTOMERS = "Cliente",
 }
 
 @Entity("contacts")
@@ -27,7 +27,10 @@ export class Contact {
 
   @Column({ type: "bigint" }) phone: number;
 
-  @Column({type: "varchar", default: "Sem comentário"}) comment: string | null | undefined;
+  @Column({ type: "varchar", default: "Sem comentário" }) comment:
+    | string
+    | null
+    | undefined;
 
   @Column({
     type: "enum",
@@ -35,6 +38,9 @@ export class Contact {
     default: contactsCategory.GENERAL,
   })
   category: contactsCategory;
+
+  @Column({ default: false })
+  isFavorite: boolean;
 
   @CreateDateColumn({ type: "date" }) createdAt: string | Date;
 
