@@ -31,6 +31,12 @@ contactsRouters.patch(
   controllers.contacts.update
 );
 
+contactsRouters.patch(
+  "/status/:id",
+  middlewares.ownerVerify,
+  controllers.contacts.put
+);
+
 contactsRouters.delete(
   "/:id",
   middlewares.ownerVerify,

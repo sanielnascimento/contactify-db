@@ -36,6 +36,14 @@ const update = async (req: Request, res: Response): Promise<Response> => {
   return res.json(newClient);
 };
 
+const put = async (req: Request, res: Response): Promise<Response> => {
+  const id: string = req.params.id;
+
+  const newClient = await services.contacts.favoriteChange(id);
+
+  return res.json(newClient);
+};
+
 const remove = async (req: Request, res: Response): Promise<Response> => {
   const id: string = req.params.id;
 
@@ -44,4 +52,4 @@ const remove = async (req: Request, res: Response): Promise<Response> => {
   return res.status(204).send();
 };
 
-export default { create, read, retrieve, update, remove };
+export default { create, read, retrieve, update, put, remove };

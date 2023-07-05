@@ -58,10 +58,24 @@ const update = async (id: string, body: iContactUpdateRequest): Promise<iContact
     return schemas.contacts.contactSchema.parse(updatedContact);
 };
 
+const favoriteChange  = async (id: string): Promise<iContact | void> => {
+    const contactRepo: iContactRepo = AppDataSource.getRepository(Contact);
+
+    const oldContact: Contact | null = await contactRepo.findOneBy({ id: id });
+    if (!oldContact) {
+        return;        
+    }
+    const updatedContact: Contact = contactRepo.create({...oldContact, isFavorite: !oldContact.isFavorite});
+
+    await contactRepo.save(updatedContact)
+
+    return schemas.contacts.contactSchema.parse(updatedContact);
+};
+
 const remove = async (id: string): Promise<void> => {
     const contactRepo: iContactRepo = AppDataSource.getRepository(Contact);
 
     await contactRepo.delete({ id });
 };
 
-export default { create, read, retrieve, remove, update };
+export default { create, read, retrieve, remove, update, favoriteChange  };
