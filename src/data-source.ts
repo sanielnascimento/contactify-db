@@ -3,6 +3,8 @@ import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
 import path from "path";
 
+process.env.NODE_ENV = process.env.NODE_ENV || "development";
+
 const dataSourceConfig = (): DataSourceOptions => {
   const entitiesPath: string = path.join(__dirname, "./entities/**.{ts,js}");
   const migrationPath: string = path.join(__dirname, "./migrations/**.{ts,js}");
