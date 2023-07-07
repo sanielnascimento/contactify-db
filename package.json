@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts",
-    "typeorm": "typeorm-ts-node-commonjs",
-    "commit": "cz"
+    "typeorm": "typeorm-ts-node-commonjs"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
