@@ -9,7 +9,7 @@
     "dev": "ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "commit": "cz",
-    "vercel-build": "yarn typeorm migration:run -d src/data-source.ts"
+    "vercel-build": "npm run typeorm migration:run -- -d ./src/data-source"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
