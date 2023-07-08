@@ -3,23 +3,31 @@ import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
 import path from "path";
 
-process.env.NODE_ENV = process.env.NODE_ENV || "development";
-
 const dataSourceConfig = (): DataSourceOptions => {
-  const entitiesPath: string = path.join(__dirname, "./entities/**.{ts,js}");
-  const migrationPath: string = path.join(__dirname, "./migrations/**.{ts,js}");
-
-  const dbUrl: string | undefined = process.env.DATABASE_URL;
-  if (!dbUrl) throw new Error("Missing env var: 'DATABASE_URL'");
-
-  return {
-    type: "postgres",
-    url: dbUrl,
-    synchronize: false,
-    logging: true,
-    migrations: [migrationPath],
-    entities: [entitiesPath],
-  };
+  return process.env.DATABASE_URL
+    ? process.env.NODE_ENV
+      ? process.env.NODE_ENV === "production"
+        ? {
+            type: "postgres",
+            url: process.env.DATABASE_URL,
+            entities: [path.join(__dirname, "./entities/**.{ts,js}")],
+            migrations: [path.join(__dirname, "./migrations/**.{ts,js}")],
+          }
+        : {
+            type: "postgres",
+            url: process.env.DATABASE_URL,
+            synchronize: false,
+            logging: true,
+            entities: [path.join(__dirname, "./entities/**.{ts,js}")],
+            migrations: [path.join(__dirname, "./migrations/**.{ts,js}")],
+          }
+      : (() => {
+          throw new Error("Missing env var: 'NODE_ENV'");
+        })()
+    : (() => {
+        throw new Error("Missing env var: 'DATABASE_URL'");
+      })();
 };
 
 export const AppDataSource = new DataSource(dataSourceConfig());
+
