@@ -3,5 +3,5 @@
 set -o errexit
 
 yarn
-yarn build
+yarn run /node_modules/typescript/bin/tsc
 yarn typeorm migration:run -d dist/data-source
