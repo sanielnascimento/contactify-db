@@ -1,11 +1,13 @@
 {
-  "name": "full-stack-challenge-api",
+  "name": "contactify-db",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:sanielnascimento/full-stack-challenge-api.git",
+  "repository": "git@github.com:sanielnascimento/contactify-db.git",
   "author": "Saniel Silva do Nascimento <saniel_sabr@outlook.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs"
   },
