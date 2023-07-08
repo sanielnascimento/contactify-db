@@ -5,12 +5,6 @@
   "repository": "git@github.com:sanielnascimento/contactify-db.git",
   "author": "Saniel Silva do Nascimento <saniel_sabr@outlook.com>",
   "license": "MIT",
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "dev": "ts-node-dev --cls --rs --ignore-watch node_modules src/server.ts",
-    "typeorm": "typeorm-ts-node-commonjs"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -43,5 +37,11 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "dev": "tsnd --ignore-watch node_modules --cls --rs src/server.ts"
   }
 }
